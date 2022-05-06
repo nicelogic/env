@@ -9,34 +9,28 @@
 	* traefik
 	* reloader 
 
+## 规划
+
+* 3+低功耗，低性能服务器做control-panel
+* 2+worker node
 
 ## cmd
 
 scp ./0-node/authorized_keys root@192.168.1.46:/root/.ssh/authorized_keys 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## 手动操作部分
 
 * install ubuntu server & sshd
-* sudo passwd root
+* 增加root pwd
+  sudo passwd root
+* 允许root登陆
+  sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+* 重启sshd 
+  systemctl restart sshd.service
+* git clone env
+  git clone https://github.com/nicelogic/env.git
+* 修改init.sh文件更改配置
 * ./env/init.sh
-	* change sshd allow root login
-	* git clone env
-	* host name
-	* ip 
-	* 更改源(aliyun + k8s aliyun) * update + upgrade
+
+以上部分可以做成镜像
 
