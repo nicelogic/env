@@ -9,14 +9,34 @@
 	* traefik
 	* reloader 
 
+
+## cmd
+
+scp ./0-node/authorized_keys root@192.168.1.46:/root/.ssh/authorized_keys 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 手动操作部分
 
 * install ubuntu server & sshd
-* password root
-* change sshd allow root login
-* git clone env
+* sudo passwd root
 * ./env/init.sh
+	* change sshd allow root login
+	* git clone env
 	* host name
 	* ip 
 	* 更改源(aliyun + k8s aliyun) * update + upgrade
-	* 
+
