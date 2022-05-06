@@ -8,7 +8,7 @@ export LOCAL_IP=192.168.1.100
 
 #--
 hostnamectl set-hostname ${NODE_NAME}
-sed -i 's/127.0.1.1 c/127.0.1.1 '${NODE_NAME}''
+sed -i 's/127.0.1.1 c/127.0.1.1 '${NODE_NAME}'/'
 
 
 
