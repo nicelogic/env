@@ -1,7 +1,7 @@
 
 #!/bin/sh
 
-./sshd/config-authorized-keys.sh
+mv sshd/authorized_keys /root/.ssh/authorized_keys 
 
 #customize hostname + local ip
 ./customize.sh
