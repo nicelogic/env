@@ -2,4 +2,5 @@
 #!/bin/sh
 
 #customize hostname + local ip
-./customize.sh
+# ./customize.sh
+./ssh-config/ssh-authorized-keys-upload.sh

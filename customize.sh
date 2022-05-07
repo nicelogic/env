@@ -28,6 +28,9 @@ network:
   version: 2
 EOF
 netplan apply
-
 update-grub
+
+
+
+
 reboot
