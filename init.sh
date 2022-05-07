@@ -4,6 +4,6 @@
 cp -rf sshd/authorized_keys /root/.ssh/authorized_keys 
 timedatectl set-timezone Asia/Shanghai
 
-./base-components.sh
 ./customize.sh
+./base-components.sh
 ./k8s-env-config.sh
