@@ -6,4 +6,4 @@ timedatectl set-timezone Asia/Shanghai
 
 ./base-components.sh
 ./customize.sh
-./k8s-env-prepare.sh
+./k8s-env-config.sh
