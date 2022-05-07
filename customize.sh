@@ -14,6 +14,15 @@ sed -i 's/^127.0.1.1 .*$/127.0.1.1 '${NODE_NAME}'/' /etc/hosts
 
 
 #--
+apt install net-tools -y
+
+eth0Info=`ifconfig eth0`
+isEth0Configured=$(echo $eth0Info | grep "eth0: flags")
+if [[ "$isEth0Configured" != "" ]]
+then
+	echo "eth0 has configured"
+else 
+	echo "eth0 not configured"
 sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"/' /etc/default/grub
 tee /etc/netplan/00-installer-config.yaml  <<EOF
 network:
@@ -29,8 +38,7 @@ network:
 EOF
 netplan apply
 update-grub
-
-
-
-
 reboot
+
+fi
+
