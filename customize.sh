@@ -28,8 +28,8 @@ else
 	echo ${localIp}
 fi
 
-export NODE_NAME=nodeName
-export LOCAL_IP=localIp
+export NODE_NAME=$nodeName
+export LOCAL_IP=$localIp
 
 #--
 
