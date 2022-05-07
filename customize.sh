@@ -4,7 +4,9 @@
 
 #--
 
+echo -n "input node name: "
 export NODE_NAME=node-0
+echo -n "input local ip: "
 export LOCAL_IP=192.168.1.100
 
 #--
