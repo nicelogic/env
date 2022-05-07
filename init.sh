@@ -3,5 +3,5 @@
 
 mv sshd/authorized_keys /root/.ssh/authorized_keys 
 
-#customize hostname + local ip
+./base-util.sh
 ./customize.sh
