@@ -3,5 +3,5 @@
 
 cp -rf sshd/authorized_keys /root/.ssh/authorized_keys 
 
-./base-util.sh
+./base-components.sh
 ./customize.sh
