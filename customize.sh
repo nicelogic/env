@@ -4,15 +4,32 @@
 
 #--
 
-myFile="/root/env/config.yml"
-if [ ! -f "$myFile" ]; then
-  touch "$myFile"
+nodeName=`head -n 1 config.yml`
+initNodeName='node-name: ""'
+if [[ "$nodeName" == "$initNodeName" ]] 
+then
+	echo "node-name not config"
+	echo -n "input node name: "
+	read nodeName
+	sed -i "s/node-name: \"\"/node-name: \""$nodeName"\"/" config.yml
+else
+	echo ${nodeName}
 fi
 
-echo -n "input node name: "
-export NODE_NAME=node-0
-echo -n "input local ip: "
-export LOCAL_IP=192.168.1.100
+localIp=`head -n 2 config.yml | tail -n 1`
+initLocalIp='local-ip: ""'
+if [[ "$localIp" == "$initLocalIp" ]] 
+then
+	echo "local ip not config"
+	echo -n "input local ip: "
+	read localIp
+	sed -i "s/local-ip: \"\"/local-ip: \""$localIp"\"/" config.yml
+else
+	echo ${localIp}
+fi
+
+export NODE_NAME=nodeName
+export LOCAL_IP=localIp
 
 #--
 
