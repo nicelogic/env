@@ -4,6 +4,11 @@
 
 #--
 
+myFile="/root/env/config.yml"
+if [ ! -f "$myFile" ]; then
+  touch "$myFile"
+fi
+
 echo -n "input node name: "
 export NODE_NAME=node-0
 echo -n "input local ip: "
