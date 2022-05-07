@@ -8,13 +8,13 @@ export NODE_NAME=node-0
 export LOCAL_IP=192.168.1.100
 
 #--
+
 hostnamectl set-hostname ${NODE_NAME}
 sed -i 's/^127.0.1.1 .*$/127.0.1.1 '${NODE_NAME}'/' /etc/hosts
 
 
 
 #--
-apt install net-tools -y
 
 eth0Info=`ifconfig eth0`
 isEth0Configured=$(echo $eth0Info | grep "eth0: flags")

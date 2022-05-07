@@ -15,3 +15,8 @@ deb-src http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted univer
 deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
 deb-src http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse
 EOF
+
+apt-get update
+apt-get upgrade
+
+apt install net-tools -y
