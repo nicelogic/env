@@ -20,6 +20,4 @@
 #     --arp \
 #     --leaderElection | tee /etc/kubernetes/manifests/kube-vip.yaml
 
-apt install keepalived -y
-apt install haproxy -y
 

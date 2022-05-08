@@ -1,2 +1,7 @@
 node-name: ""
 local-ip: ""
+master-high-availability: 
+  enable: no
+  apiserver-vip: ""
+traefik-high-availability:
+  enable: no
