@@ -4,32 +4,32 @@
 
 #--
 
-nodeName=`head -n 1 config.yml`
-initNodeName='node-name: ""'
-if [[ "$nodeName" == "$initNodeName" ]] 
-then
-	echo "node-name not config"
-	echo -n "input node name: "
-	read nodeName
-	sed -i "s/node-name: \"\"/node-name: \""$nodeName"\"/" config.yml
-else
-	echo ${nodeName}
-fi
+# nodeName=`head -n 1 config.yml`
+# initNodeName='node-name: ""'
+# if [[ "$nodeName" == "$initNodeName" ]] 
+# then
+# 	echo "node-name not config"
+# 	echo -n "input node name: "
+# 	read nodeName
+# 	sed -i "s/node-name: \"\"/node-name: \""$nodeName"\"/" config.yml
+# else
+# 	echo ${nodeName}
+# fi
 
-localIp=`head -n 2 config.yml | tail -n 1`
-initLocalIp='local-ip: ""'
-if [[ "$localIp" == "$initLocalIp" ]] 
-then
-	echo "local ip not config"
-	echo -n "input local ip: "
-	read localIp
-	sed -i "s/local-ip: \"\"/local-ip: \""$localIp"\"/" config.yml
-else
-	echo ${localIp}
-fi
+# localIp=`head -n 2 config.yml | tail -n 1`
+# initLocalIp='local-ip: ""'
+# if [[ "$localIp" == "$initLocalIp" ]] 
+# then
+# 	echo "local ip not config"
+# 	echo -n "input local ip: "
+# 	read localIp
+# 	sed -i "s/local-ip: \"\"/local-ip: \""$localIp"\"/" config.yml
+# else
+# 	echo ${localIp}
+# fi
 
-export NODE_NAME=$nodeName
-export LOCAL_IP=$localIp
+export NODE_NAME=$1
+export LOCAL_IP=$2
 
 #--
 
