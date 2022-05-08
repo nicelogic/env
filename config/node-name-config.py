@@ -8,7 +8,6 @@ nodeName = config['node-name']
 print('node name: ' + nodeName)
 
 if len(nodeName) == 0 :
-	print('node name  not config')
 	exit(1)
 
 os.system('hostnamectl set-hostname ' + nodeName)
