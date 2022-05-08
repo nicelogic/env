@@ -6,7 +6,8 @@ timedatectl set-timezone Asia/Shanghai
 
 cd config
 res=$(python3 node-name-config.py)
-if res == 1 then
+if [[ res == 1 ]]
+then
 	echo 'please config node name first'
 fi
 python3 ip-config.py
