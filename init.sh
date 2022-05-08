@@ -8,10 +8,12 @@ cd config
 python3 node-name-config.py
 if [ $? == 1 ]; then
 	echo 'node name not config'
+	exit 1
 fi
 python3 ip-config.py
 if [ $? == 1 ]; then
 	echo 'local ip not config'
+	exit 1
 fi
 cd ..
 
