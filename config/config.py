@@ -3,7 +3,7 @@ import os
 import yaml
 import sys
 
-configYml = open(r'node-name-config.yml')
+configYml = open(r'config.yml')
 config = yaml.safe_load(configYml)
 nodeName = config['node-name']
 print('node name: ' + nodeName)
