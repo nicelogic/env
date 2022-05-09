@@ -1,18 +1,15 @@
 
 #!/bin/sh
 
+sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
 cp -rf sshd/authorized_keys /root/.ssh/authorized_keys 
+systemctl restart sshd.service
 timedatectl set-timezone Asia/Shanghai
 
 cd config
-python3 node-name-config.py
+python3 config.py
 if [ $? == 1 ]; then
-	echo 'node name not config'
-	exit 1
-fi
-python3 ip-config.py
-if [ $? == 1 ]; then
-	echo 'local ip not config'
+	echo 'base info not config'
 	exit 1
 fi
 cd ..

@@ -2,7 +2,7 @@
 #!/bin/sh
 
 export LOCAL_IP=$1
-echo $LOCAL_IP
+echo "in shell, local ip: $LOCAL_IP"
 
 eth0Info=`ifconfig eth0`
 isEth0Configured=$(echo $eth0Info | grep "eth0: flags")
@@ -11,7 +11,11 @@ then
 	echo "eth0 has configured"
 else 
 	echo "eth0 not configured"
-sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"/' /etc/default/grub
+  sed -i 's/GRUB_CMDLINE_LINUX=""/GRUB_CMDLINE_LINUX="net.ifnames=0 biosdevname=0"/' /etc/default/grub
+  update-grub
+  reboot
+fi
+
 tee /etc/netplan/00-installer-config.yaml  <<EOF
 network:
   ethernets:
@@ -24,9 +28,4 @@ network:
               addresses: [114.114.114.114, 8.8.8.8]
   version: 2
 EOF
-#netplan apply
-#update-grub
-#reboot
-
-fi
-
+netplan apply

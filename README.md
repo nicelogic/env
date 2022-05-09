@@ -23,14 +23,14 @@ scp ./0-node/authorized_keys root@192.168.1.46:/root/.ssh/authorized_keys
 * install ubuntu server & sshd
 * 增加root pwd
   sudo passwd root
-* 允许root登陆
-  sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-* 重启sshd 
-  systemctl restart sshd.service
 * git clone env
   git clone https://github.com/nicelogic/env.git
 * 修改init.sh文件更改配置
 * ./env/init.sh
 
-以上部分可以做成镜像
+
+## 自动部分
+
+* 
+
 
