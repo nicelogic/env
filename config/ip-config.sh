@@ -6,8 +6,7 @@ echo "in shell, local ip: $LOCAL_IP"
 
 eth0Info=`ifconfig eth0`
 isEth0Configured=$(echo $eth0Info | grep "eth0: flags")
-if [[ "$isEth0Configured" != "" ]]
-then
+if [ "$isEth0Configured" != "" ]; then
 	echo "eth0 has configured"
 else 
 	echo "eth0 not configured"
