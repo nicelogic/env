@@ -17,3 +17,7 @@ cd k8s
 ./k8s-install.sh
 ./k8s-env-config.sh
 cd ..
+
+cd config/master-high-availability
+python3 master-high-availability.py
+cd ..

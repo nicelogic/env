@@ -8,15 +8,12 @@
 	* k8s dashboard
 	* traefik
 	* reloader 
+	* efk
 
 ## 规划
 
 * 3+低功耗，低性能服务器做control-panel
 * 2+worker node
-
-## cmd
-
-scp ./0-node/authorized_keys root@192.168.1.46:/root/.ssh/authorized_keys 
 
 ## 手动操作部分
 
