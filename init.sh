@@ -1,6 +1,15 @@
 
 #!/bin/sh
 
+#config ip first(because may cause reboot)
+cd config-ip
+./config.py
+cd ..
+
+cd config-node-name
+./config.py
+cd ..
+
 cd base
 ./base.sh
 cd ..
