@@ -1,11 +1,6 @@
 
 #!/bin/sh
 
-sed -i 's/#PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
-cp -rf authorized_keys /root/.ssh/authorized_keys 
-systemctl restart sshd.service
-timedatectl set-timezone Asia/Shanghai
-
 cp /etc/apt/sources.list /etc/apt/sources.list.bak
 
 tee /etc/apt/sources.list <<-'EOF'
@@ -25,7 +20,4 @@ curl https://mirrors.aliyun.com/kubernetes/apt/doc/apt-key.gpg | apt-key add -
 echo "deb  https://mirrors.aliyun.com/kubernetes/apt/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 
 apt-get update -y
-apt-get upgrade -y
-
-apt install -y net-tools 
-apt install -y ntpdate 
+#apt-get upgrade -y

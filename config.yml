@@ -4,7 +4,7 @@ local-ip:
 master-high-availability:
   enable: true
   keepalived:
-    priority: 100
+    priority: 101
     virtual-ipaddress: 192.168.1.200
     check-apiserver:
       apiserver-vip: 192.168.1.200
