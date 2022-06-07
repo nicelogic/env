@@ -49,6 +49,10 @@ apiServerDestPort = config['master-high-availability']['keepalived']['check-apis
 print('keep alived priority: ' + str(keepAlivedPriority))
 
 # haproxy
+haproxyNodeSearchText = r'''	server node.*check'''
+haproxyNodeReplaceText = r''
+util.replaceText(haproxyNodeSearchText, haproxyNodeReplaceText, 'haproxy.cfg')
+
 haproxyNodes = config['master-high-availability']['haproxy']['nodes']
 haproxyCfgFileName = 'haproxy.cfg'
 with open(haproxyCfgFileName, 'r') as haproxCfgFile:
