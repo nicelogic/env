@@ -8,7 +8,7 @@ cd ..
 
 #---------------------
 cd config-ip
-./config.py
+python3 ./config.py
 if [ $? == 1 ]; then
 	echo 'ip not config'
 	exit 1
@@ -17,7 +17,7 @@ cd ..
 
 #---------------------
 cd config-node-name
-./config.py
+python3 ./config.py
 if [ $? == 1 ]; then
 	echo 'node name not config'
 	exit 1
