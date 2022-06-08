@@ -14,4 +14,3 @@ if nodeName is None:
 print('node name: ' + nodeName)
 os.system('hostnamectl set-hostname ' + nodeName)
 os.system(r"sed -i 's/^127.0.1.1 .*$/127.0.1.1 %s/' /etc/hosts" %(nodeName))
-os.system('./ip-config.sh ' + localIp)
