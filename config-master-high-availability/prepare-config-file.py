@@ -14,6 +14,8 @@ if not isMasterHighAvailabilityEnable:
     sys.exit(0)
 
 # keepalived
+keepAlivedCfgFileName = 'config/keepalived.conf'
+keepAlivedCheckApiServerFileName = 'config/check_apiserver.sh'
 keepAlivedPriority = config['master-high-availability']['keepalived']['priority']
 keepAlivedVip = config['master-high-availability']['keepalived']['virtual-ipaddress']
 apiServerVip = config['master-high-availability']['keepalived']['check-apiserver']['apiserver-vip']
@@ -26,35 +28,35 @@ print('keep alived api server dest port: ' + str(apiServerDestPort))
 keepAlivedPrioritySearchText = r"^(.*priority).*$"
 keepAlivedPriorityReplaceText = r"\1 " + str(keepAlivedPriority)
 util.replaceText(keepAlivedPrioritySearchText,
-                 keepAlivedPriorityReplaceText, 'keepalived.conf')
+                 keepAlivedPriorityReplaceText, keepAlivedCfgFileName)
 
 keepAlivedVipSearchText = r'''^(.*virtual_ipaddress {.*$)
 (^\s*).*(\s*$)'''
 keepAlivedVipReplaceText = r'''\1
 \g<2>''' + keepAlivedVip + r'''\3'''
 util.replaceText(keepAlivedVipSearchText,
-                 keepAlivedVipReplaceText, 'keepalived.conf')
+                 keepAlivedVipReplaceText, keepAlivedCfgFileName)
 
 apiServerVipSearchText = r'''(^export APISERVER_VIP=).+'''
 apiServerVipReplaceText = r'\g<1>' + apiServerVip
 util.replaceText(apiServerVipSearchText,
-                 apiServerVipReplaceText, 'check_apiserver.sh')
+                 apiServerVipReplaceText, keepAlivedCheckApiServerFileName)
 
 apiServerDestPortSearchText = r'''(^export APISERVER_DEST_PORT=)\d+'''
 apiServerDestPortReplaceText = r'\g<1>' + str(apiServerDestPort)
 util.replaceText(apiServerDestPortSearchText,
-                 apiServerDestPortReplaceText, 'check_apiserver.sh')
+                 apiServerDestPortReplaceText, keepAlivedCheckApiServerFileName)
 
 apiServerDestPort = config['master-high-availability']['keepalived']['check-apiserver']['apiserver-dest-port']
 print('keep alived priority: ' + str(keepAlivedPriority))
 
 # haproxy
+haproxyCfgFileName = 'config/haproxy.cfg'
 haproxyNodeSearchText = r'''	server node.*check'''
 haproxyNodeReplaceText = r''
-util.replaceText(haproxyNodeSearchText, haproxyNodeReplaceText, 'haproxy.cfg')
+util.replaceText(haproxyNodeSearchText, haproxyNodeReplaceText, haproxyCfgFileName)
 
 haproxyNodes = config['master-high-availability']['haproxy']['nodes']
-haproxyCfgFileName = 'haproxy.cfg'
 with open(haproxyCfgFileName, 'r') as haproxCfgFile:
     haproxyCfgData = haproxCfgFile.read()
 for node in reversed(haproxyNodes):
@@ -62,6 +64,5 @@ for node in reversed(haproxyNodes):
         print('haproxy config: ' + node)
         haproxyNodeSearchText = r'''^(	#server node-x xxx.xxx.x.xxx:xxxx check)'''
         haproxyNodeReplaceText = r'\g<1>' + '\n	server ' +  node + ' check'
-        util.replaceText(haproxyNodeSearchText, haproxyNodeReplaceText, 'haproxy.cfg')
-
+        util.replaceText(haproxyNodeSearchText, haproxyNodeReplaceText, haproxyCfgFileName)
 

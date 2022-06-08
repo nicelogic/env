@@ -47,5 +47,7 @@ cd ..
 
 #---------------------
 cd config-master-high-availability
-python3 master-high-availability.py
+python3 prepare-config-file.py
+./haproxy-config.sh
+./keepalived-config.sh
 cd ..
