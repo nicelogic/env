@@ -40,6 +40,11 @@ cd util
 cd ..
 
 #---------------------
+cd container
+./containerd-init.sh
+cd ..
+
+#---------------------
 cd k8s
 ./k8s-install.sh
 ./k8s-env-config.sh
