@@ -10,3 +10,5 @@ print('is first node: ' + str(isFirstNode), + ', master high availability enable
 
 if isFirstNode:
 	os.system('./init-master.sh')
+else isMasterHighAvailabilityEnable:
+	
