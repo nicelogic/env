@@ -235,3 +235,16 @@ tcp6       0      0 :::10256                :::*                    LISTEN      
 tcp6       0      0 :::22                   :::*                    LISTEN      854/sshd: /usr/sbin 
 udp        0      0 127.0.0.53:53           0.0.0.0:*                           776/systemd-resolve 
 udp6       0      0 fe80::8ad7:f6ff:fe3:546 :::*                                773/systemd-network 
+
+
+## 关于高可用
+
+是HA先DEPLOY还是先JOIN CONTROL PANEL
+重点是已有的CONTROL PANEL上的HA不能在MASTER NODE JOIN前更新HA
+新NODE可以先配置HA/KEEPALIVED, 后JOIN
+
+最好：
+1. 新NODE先初始化环境
+2. JOIN MASTER NODE
+3. update new node's ha + keepalived
+4. update old node ha + keepalived
