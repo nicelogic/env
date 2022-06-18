@@ -1,6 +1,7 @@
 
 node-name: 
 local-ip: 
+is-first-node: false
 master-high-availability:
   enable: true
   keepalived:
