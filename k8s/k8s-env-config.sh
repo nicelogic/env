@@ -22,13 +22,13 @@ sed -ri 's/.*swap.*/#&/' /etc/fstab
 swapoff -a
 
 #docker
-mkdir -p /etc/docker
-tee /etc/docker/daemon.json <<-'EOF'
-{
-  "exec-opts": ["native.cgroupdriver=systemd"],	
-  "registry-mirrors": ["https://registry.cn-hangzhou.aliyuncs.com"]
-}
-EOF
-systemctl enable docker 
-systemctl daemon-reload 
-systemctl restart docker 
+# mkdir -p /etc/docker
+# tee /etc/docker/daemon.json <<-'EOF'
+# {
+#   "exec-opts": ["native.cgroupdriver=systemd"],	
+#   "registry-mirrors": ["https://registry.cn-hangzhou.aliyuncs.com"]
+# }
+# EOF
+# systemctl enable docker 
+# systemctl daemon-reload 
+# systemctl restart docker 
