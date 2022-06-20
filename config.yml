@@ -1,6 +1,8 @@
 
 node-name: 
 local-ip: 
+local-ip-gateway: 192.168.1.1
+network-interface-card: eth0
 is-first-node: false
 apiserver-advertise-address: 0.0.0.0
 pod-network-cidr: 
