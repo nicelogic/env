@@ -1,6 +1,8 @@
 
 #!/bin/sh
 
+modprobe br_netfilter
+echo "1" > /proc/sys/net/ipv4/ip_forward
 cat <<EOF | sudo tee /etc/modules-load.d/k8s.conf
 br_netfilter
 EOF

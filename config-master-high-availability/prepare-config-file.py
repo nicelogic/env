@@ -7,11 +7,15 @@ import yaml
 configYml = open(r'../config.yml')
 config = yaml.safe_load(configYml)
 isMasterHighAvailabilityEnable = config['master-high-availability']['enable']
+networkInterfaceCard = config['network-interface-card']
 print('master high availability enable: ' +
       str(isMasterHighAvailabilityEnable))
 if not isMasterHighAvailabilityEnable:
     print('master high availability disabled')
     sys.exit(0)
+if networkInterfaceCard is None:
+	print('network interface card is not config')
+	sys.exit(1)
 
 # keepalived
 keepAlivedCfgFileName = 'config/keepalived.conf'

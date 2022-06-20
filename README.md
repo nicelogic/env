@@ -197,9 +197,10 @@ Run "kubectl apply -f [podnetwork].yaml" with one of the options listed at:
 
 You can now join any number of the control-plane node running the following command on each as root:
 
-  kubeadm join 192.168.1.200:8443 --token lavfgt.0avx8866oelz8fdw \
-	--discovery-token-ca-cert-hash sha256:0a03592e0b3dc3ba3c6244ffc029acaedfee8ed4208064497be5ad366bc745ce \
-	--control-plane --certificate-key c19ed16a94f7502fa7fdc4493b14b15d113e75261c9b725269a5479abb37ef7b
+kubeadm join 192.168.1.200:8443 --token 4bos8d.6vzfc30zl1hv50bq --discovery-token-ca-cert-hash sha256:0a03592e0b3dc3ba3c6244ffc029acaedfee8ed4208064497be5ad366bc745ce --control-plane --certificate-key c19ed16a94f7502fa7fdc4493b14b15d113e75261c9b725269a5479abb37ef7b
+
+
+  kubeadm join 192.168.1.200:8443 --token ll82so.11y9d2jh3w2btx46 --discovery-token-ca-cert-hash sha256:0a03592e0b3dc3ba3c6244ffc029acaedfee8ed4208064497be5ad366bc745ce --control-plane --certificate-key c19ed16a94f7502fa7fdc4493b14b15d113e75261c9b725269a5479abb37ef7b
 
 Please note that the certificate-key gives access to cluster sensitive data, keep it secret!
 As a safeguard, uploaded-certs will be deleted in two hours; If necessary, you can use
@@ -255,3 +256,75 @@ udp6       0      0 fe80::8ad7:f6ff:fe3:546 :::*                                
 2. JOIN MASTER NODE
 3. update new node's ha + keepalived
 4. update old node ha + keepalived
+
+
+## join master
+
+root@node-1:/proc/sys/net# kubeadm join 192.168.1.200:8443 --token 4bos8d.6vzfc30zl1hv50bq --discovery-token-ca-cert-hash sha256:0a03592e0b3dc3ba3c6244ffc029acaedfee8ed4208064497be5ad366bc745ce --control-plane --certificate-key c19ed16a94f7502fa7fdc4493b14b15d113e75261c9b725269a5479abb37ef7b
+[preflight] Running pre-flight checks
+[preflight] Reading configuration from the cluster...
+[preflight] FYI: You can look at this config file with 'kubectl -n kube-system get cm kubeadm-config -o yaml'
+[preflight] Running pre-flight checks before initializing the new control plane instance
+[preflight] Pulling images required for setting up a Kubernetes cluster
+[preflight] This might take a minute or two, depending on the speed of your internet connection
+[preflight] You can also perform this action in beforehand using 'kubeadm config images pull'
+[download-certs] Downloading the certificates in Secret "kubeadm-certs" in the "kube-system" Namespace
+[certs] Using certificateDir folder "/etc/kubernetes/pki"
+[certs] Generating "front-proxy-client" certificate and key
+[certs] Generating "etcd/server" certificate and key
+[certs] etcd/server serving cert is signed for DNS names [localhost node-1] and IPs [192.168.1.101 127.0.0.1 ::1]
+[certs] Generating "etcd/peer" certificate and key
+[certs] etcd/peer serving cert is signed for DNS names [localhost node-1] and IPs [192.168.1.101 127.0.0.1 ::1]
+[certs] Generating "etcd/healthcheck-client" certificate and key
+[certs] Generating "apiserver-etcd-client" certificate and key
+[certs] Generating "apiserver" certificate and key
+[certs] apiserver serving cert is signed for DNS names [kubernetes kubernetes.default kubernetes.default.svc kubernetes.default.svc.cluster.local node-1] and IPs [10.96.0.1 192.168.1.101 192.168.1.200]
+[certs] Generating "apiserver-kubelet-client" certificate and key
+[certs] Valid certificates and keys now exist in "/etc/kubernetes/pki"
+[certs] Using the existing "sa" key
+[kubeconfig] Generating kubeconfig files
+[kubeconfig] Using kubeconfig folder "/etc/kubernetes"
+W0620 23:13:54.486249   15464 endpoint.go:57] [endpoint] WARNING: port specified in controlPlaneEndpoint overrides bindPort in the controlplane address
+[kubeconfig] Writing "admin.conf" kubeconfig file
+W0620 23:13:54.640318   15464 endpoint.go:57] [endpoint] WARNING: port specified in controlPlaneEndpoint overrides bindPort in the controlplane address
+[kubeconfig] Writing "controller-manager.conf" kubeconfig file
+W0620 23:13:54.816796   15464 endpoint.go:57] [endpoint] WARNING: port specified in controlPlaneEndpoint overrides bindPort in the controlplane address
+[kubeconfig] Writing "scheduler.conf" kubeconfig file
+[control-plane] Using manifest folder "/etc/kubernetes/manifests"
+[control-plane] Creating static Pod manifest for "kube-apiserver"
+[control-plane] Creating static Pod manifest for "kube-controller-manager"
+[control-plane] Creating static Pod manifest for "kube-scheduler"
+[check-etcd] Checking that the etcd cluster is healthy
+[kubelet-start] Writing kubelet configuration to file "/var/lib/kubelet/config.yaml"
+[kubelet-start] Writing kubelet environment file with flags to file "/var/lib/kubelet/kubeadm-flags.env"
+[kubelet-start] Starting the kubelet
+[kubelet-start] Waiting for the kubelet to perform the TLS Bootstrap...
+[etcd] Announced new etcd member joining to the existing etcd cluster
+[etcd] Creating static Pod manifest for "etcd"
+[etcd] Waiting for the new etcd member to join the cluster. This can take up to 40s
+The 'update-status' phase is deprecated and will be removed in a future release. Currently it performs no operation
+[mark-control-plane] Marking the node node-1 as control-plane by adding the labels: [node-role.kubernetes.io/control-plane node.kubernetes.io/exclude-from-external-load-balancers]
+[mark-control-plane] Marking the node node-1 as control-plane by adding the taints [node-role.kubernetes.io/master:NoSchedule node-role.kubernetes.io/control-plane:NoSchedule]
+
+This node has joined the cluster and a new control plane instance was created:
+
+* Certificate signing request was sent to apiserver and approval was received.
+* The Kubelet was informed of the new secure connection details.
+* Control plane label and taint were applied to the new node.
+* The Kubernetes control plane instances scaled up.
+* A new etcd member was added to the local/stacked etcd cluster.
+
+To start administering your cluster from this node, you need to run the following as a regular user:
+
+	mkdir -p $HOME/.kube
+	sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+	sudo chown $(id -u):$(id -g) $HOME/.kube/config
+
+Run 'kubectl get nodes' to see this node join the cluster.
+
+## TODO
+
+* 无线网卡network-plan bug: 配置文件-wifi.yml,且type为wifi
+* keepalived支持设置网口
+* 新增master node成功之后，同步更新旧node的haproxy的node,并且重启旧nodehaproxy
+* 然后旧Node要支持更新keepalived + haproxy
