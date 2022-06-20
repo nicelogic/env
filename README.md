@@ -37,6 +37,13 @@
 * 后续高可用节点加入，需要有脚本能够自动更新所有其他高可用节点的脚本
 * 关于Haproxy, 判断更新之后，连带更新其他Node
 
+## 裸机部分
+
+* 网卡使用原生网卡名
+  * 改网卡名称涉及重启，能不重启就不重启
+  * 有线网卡改成eth0还好，无线物理网卡直接改。ubuntu server重启之后会重制操作，而且启动慢
+  * 不改网卡，ha/keepalived可能会需要用到网卡名，直接走配置即可。需要多一步配置就是了
+  最终选择配置网卡名称方案
 
 ## 环境初始监听端口
 
@@ -192,7 +199,7 @@ You can now join any number of the control-plane node running the following comm
 
   kubeadm join 192.168.1.200:8443 --token lavfgt.0avx8866oelz8fdw \
 	--discovery-token-ca-cert-hash sha256:0a03592e0b3dc3ba3c6244ffc029acaedfee8ed4208064497be5ad366bc745ce \
-	--control-plane --certificate-key 979f7c491a201ee42b953b1a6437a731f8b5f400442796a1e64dfaa180aa2d78
+	--control-plane --certificate-key c19ed16a94f7502fa7fdc4493b14b15d113e75261c9b725269a5479abb37ef7b
 
 Please note that the certificate-key gives access to cluster sensitive data, keep it secret!
 As a safeguard, uploaded-certs will be deleted in two hours; If necessary, you can use
