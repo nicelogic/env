@@ -1,8 +1,9 @@
 
 node-name: 
 local-ip: 
+netplan-config-file-path: /etc/netplan/00-installer-config.yaml #00-installer-config-wifi.yaml 
+network-interface-card: 
 local-ip-gateway: 192.168.1.1
-network-interface-card: eth0
 is-first-node: false
 apiserver-advertise-address: 0.0.0.0
 pod-network-cidr: 10.244.0.0/16
