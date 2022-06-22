@@ -24,9 +24,7 @@ echo "wifi name: $WIFI_NAME"
 #   reboot
 # fi
 
-return 1
-
-if [ $WIFI_NAME == "" ]; then
+if [ $WIFI_NAME != "" ]; then
 
 tee $NETPLAN_CONFIG_FILE_PATH <<EOF
 
@@ -34,7 +32,7 @@ tee $NETPLAN_CONFIG_FILE_PATH <<EOF
 network:
   version: 2
   wifis:
-    wlp2s0:
+    $NETWORK_INTERFACE_CARD:
       access-points:
         $WIFI_NAME:
           password: $WIFI_PWD
