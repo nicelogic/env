@@ -9,6 +9,9 @@ localIp = config['local-ip']
 localIpGateway = config['local-ip-gateway']
 networkInterfaceCard = config['network-interface-card']
 netplanConfigFilePath = config['netplan-config-file-path']
+wifiName = config['wifi']['name'] or ''
+wifiPwd = config['wifi']['pwd'] or ''
+
 if localIp is None:
     print('local ip is not config')
     sys.exit(1)
@@ -21,7 +24,6 @@ if localIpGateway is None:
 if netplanConfigFilePath is None:
     print('netplan config file path is not config')
     sys.exit(1)
-if netplanConfigFilePath.
 
 os.system('./ip-config.sh ' + localIp + ' ' + networkInterfaceCard +
-          ' ' + localIpGateway + ' ' + netplanConfigFilePath)
+          ' ' + localIpGateway + ' ' + netplanConfigFilePath + ' ' + wifiName + ' ' + wifiPwd)

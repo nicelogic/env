@@ -5,10 +5,13 @@ export LOCAL_IP=$1
 export NETWORK_INTERFACE_CARD=$2
 export LOCAL_IP_GATEWAY=$3
 export NETPLAN_CONFIG_FILE_PATH=$4
+export WIFI_NAME=$5
+export WIFI_PWD=$6
 echo "local ip: $LOCAL_IP"
 echo "network interface card: $NETWORK_INTERFACE_CARD"
 echo "local ip gateway: $LOCAL_IP_GATEWAY"
 echo "netplan config file path: $NETPLAN_CONFIG_FILE_PATH"
+echo "wifi name: $WIFI_NAME"
 
 # eth0Info=`ifconfig eth0`
 # isEth0Configured=$(echo $eth0Info | grep "eth0: flags")
@@ -20,6 +23,31 @@ echo "netplan config file path: $NETPLAN_CONFIG_FILE_PATH"
 #   update-grub
 #   reboot
 # fi
+
+return 1
+
+if [ $WIFI_NAME == "" ]; then
+
+tee $NETPLAN_CONFIG_FILE_PATH <<EOF
+
+# This is the network config written by 'subiquity'
+network:
+  version: 2
+  wifis:
+    wlp2s0:
+      access-points:
+        $WIFI_NAME:
+          password: $WIFI_PWD
+      #dhcp4: true
+      dhcp4: no
+      dhcp6: no
+      addresses: [$LOCAL_IP/24]
+      gateway4: $LOCAL_IP_GATEWAY
+      nameservers:
+        addresses: [114.114.114.114, 8.8.8.8]
+EOF
+
+else
 
 tee $NETPLAN_CONFIG_FILE_PATH <<EOF
 network:
@@ -33,21 +61,9 @@ network:
       nameservers:
               addresses: [114.114.114.114, 8.8.8.8]
 EOF
+
+fi
+
 netplan apply
 
 
-# This is the network config written by 'subiquity'
-network:
-  version: 2
-  wifis:
-    wlp2s0:
-      access-points:
-        ice:
-          password: Niceice220
-      #dhcp4: true
-      dhcp4: no
-      dhcp6: no
-      addresses: [192.168.1.101/24]
-      gateway4: 192.168.1.1
-      nameservers:
-        addresses: [114.114.114.114, 8.8.8.8]
