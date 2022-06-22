@@ -3,6 +3,9 @@ node-name:
 local-ip: 
 netplan-config-file-path: /etc/netplan/00-installer-config.yaml #00-installer-config-wifi.yaml 
 network-interface-card: 
+wifi:
+  name: 
+  pwd:
 local-ip-gateway: 192.168.1.1
 is-first-node: false
 apiserver-advertise-address: 0.0.0.0
