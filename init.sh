@@ -48,7 +48,6 @@ cd ..
 cd k8s
 ./k8s-install.sh
 ./k8s-env-config.sh
-python3 ./init-or-join.py
 cd ..
 
 #---------------------

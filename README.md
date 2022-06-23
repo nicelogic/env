@@ -1,12 +1,9 @@
 # env
 
-## 总体思想
+[toc]
 
-* 目标：拿到机器，安装ubuntu server, 配置config.yml, init即可完成全部操作
-* 职责:
+## 需求
   * 构建高可用k8s架构
-	* init k8s master node
-	* join k8s master/worker node
   * 其他k8s集群层面事物，都归本项目负责
 	* dashboard
 	* reloader
@@ -14,44 +11,41 @@
 	* efk //后续支持
 	* prometheus //后续支持
   * 支持uninit.sh剥离 node
-## 定位
 
-* 安装ubuntu server 20.04+(更新到最新)
-* 构建k8s集群环境 
-* k8s的基础设施
-	* k8s dashboard
-	* traefik
-	* reloader 
-	* efk
-* 维护ubuntu server + k8s
+## 如何使用
 
-## 手动操作部分
+### 手动操作部分
 
-* install ubuntu server & sshd
-* 增加root pwd
-  sudo passwd root
-* git clone env
-  git clone https://github.com/nicelogic/env.git
-* cd env & config config.yml
-* ./init.sh
+* sudo passwd root
+* git clone https://github.com/nicelogic/env.git
 
-## 裸机部分
+### 自动部分
+
+* 配置config.yml
+* init.sh #基础环境配置(如果为Master则包括高可用部分)
+* init-or-join.sh #加入k8s
+* 如果加入的为master,更新其他mastert的ha配置
+
+
+## 设计决策
+### 网卡名称
 
 * 网卡使用原生网卡名
-  * 改网卡名称涉及重启，能不重启就不重启
-  * 有线网卡改成eth0还好，无线物理网卡直接改。ubuntu server重启之后会重制操作，而且启动慢
-  * 不改网卡，ha/keepalived可能会需要用到网卡名，直接走配置即可。需要多一步配置就是了
+* 改网卡名称涉及重启，能不重启就不重启
+* 有线网卡改成eth0还好，无线物理网卡直接改。ubuntu server重启之后会重制操作，而且启动慢
+* 不改网卡，ha/keepalived可能会需要用到网卡名，直接走配置即可。需要多一步配置就是了
   最终选择配置网卡名称方案
 
-## 环境初始监听端口
+### 为何不需要init/join master之后才配置keepalived/ha
 
-是HA先DEPLOY还是先JOIN CONTROL PANEL
-重点是已有的CONTROL PANEL上的HA不能在MASTER NODE JOIN前更新HA
-新NODE可以先配置HA/KEEPALIVED, 后JOIN
+因为配置的同时有服务器挂了，就可能负载到本机器，此时本机虽然没有join master
+但是ha因为check失败，也会转发到其他可用的master node上。所以没问题
 
-最好：
-1. 新NODE先初始化环境
-2. JOIN MASTER NODE
-3. update new node's ha + keepalived
-4. update old node ha + keepalived
+### 为什么不使用一个init就完成全部操作
 
+因为join操作需要在已有master node上获取token
+这一步比较涉及安全。而且join操作目前经常失败
+其为核心步骤。单独执行比较便于观察。
+其粒度和职责也和init不大一样。
+update ha配置，master机器不会很多，所以可以手动执行。脚本执行需要其他node的密钥
+就此设定。费点人工，但是比较安全。

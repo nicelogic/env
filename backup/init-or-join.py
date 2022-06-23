@@ -2,7 +2,7 @@
 import os
 import yaml
 
-configYml = open(r'../config.yml')
+configYml = open(r'./config.yml')
 config = yaml.safe_load(configYml)
 isFirstNode = config['is-first-node']
 isMasterHighAvailabilityEnable = config['master-high-availability']['enable']
