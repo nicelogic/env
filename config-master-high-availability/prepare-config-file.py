@@ -1,8 +1,8 @@
 
+import yaml
+from python_util import util
 import sys
 sys.path.append('..')
-from python_util import util
-import yaml
 
 configYml = open(r'../config.yml')
 config = yaml.safe_load(configYml)
@@ -14,8 +14,8 @@ if not isMasterHighAvailabilityEnable:
     print('master high availability disabled')
     sys.exit(0)
 if networkInterfaceCard is None:
-	print('network interface card is not config')
-	sys.exit(1)
+    print('network interface card is not config')
+    sys.exit(1)
 
 # keepalived
 keepAlivedCfgFileName = 'config/keepalived.conf'
@@ -33,6 +33,13 @@ keepAlivedPrioritySearchText = r"^(.*priority).*$"
 keepAlivedPriorityReplaceText = r"\1 " + str(keepAlivedPriority)
 util.replaceText(keepAlivedPrioritySearchText,
                  keepAlivedPriorityReplaceText, keepAlivedCfgFileName)
+masterKeepAlivedPriority = 101
+if keepAlivedPriority < 101:
+    keepAlivedStateSearchText = r"^(.*state).*$"
+    keepAlivedStateReplaceText = r"\1 " + "BACKUP"
+    util.replaceText(keepAlivedStateSearchText,
+                     keepAlivedStateReplaceText, keepAlivedCfgFileName)
+
 
 keepAlivedVipSearchText = r'''^(.*virtual_ipaddress {.*$)
 (^\s*).*(\s*$)'''
@@ -58,7 +65,8 @@ print('keep alived priority: ' + str(keepAlivedPriority))
 haproxyCfgFileName = 'config/haproxy.cfg'
 haproxyNodeSearchText = r'''	server node.*check'''
 haproxyNodeReplaceText = r''
-util.replaceText(haproxyNodeSearchText, haproxyNodeReplaceText, haproxyCfgFileName)
+util.replaceText(haproxyNodeSearchText,
+                 haproxyNodeReplaceText, haproxyCfgFileName)
 
 haproxyNodes = config['master-high-availability']['haproxy']['nodes']
 with open(haproxyCfgFileName, 'r') as haproxCfgFile:
@@ -67,6 +75,6 @@ for node in reversed(haproxyNodes):
     if node not in haproxyCfgData:
         print('haproxy config: ' + node)
         haproxyNodeSearchText = r'''^(	#server node-x xxx.xxx.x.xxx:xxxx check)'''
-        haproxyNodeReplaceText = r'\g<1>' + '\n	server ' +  node + ' check'
-        util.replaceText(haproxyNodeSearchText, haproxyNodeReplaceText, haproxyCfgFileName)
-
+        haproxyNodeReplaceText = r'\g<1>' + '\n	server ' + node + ' check'
+        util.replaceText(haproxyNodeSearchText,
+                         haproxyNodeReplaceText, haproxyCfgFileName)
