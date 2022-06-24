@@ -56,3 +56,10 @@ python3 prepare-config-file.py
 ./haproxy-config.sh
 ./keepalived-config.sh
 cd ..
+
+#-------------------
+cd k8s
+python3 init-master.py
+cd ..
+
+#-------------------
