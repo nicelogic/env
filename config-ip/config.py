@@ -27,5 +27,4 @@ if netplanConfigFilePath is None:
 
 os.system('./ip-config.sh ' + localIp + ' ' + networkInterfaceCard +
           ' ' + localIpGateway + ' ' + netplanConfigFilePath + ' ' + wifiName + ' ' + wifiPwd)
-sys.exit(0)
 
