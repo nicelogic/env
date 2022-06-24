@@ -58,7 +58,7 @@ cd ..
 
 #-------------------
 cd k8s
-python3 init-master.py
+python3 init-master-and-pod-network.py
 cd ..
 
 #-------------------

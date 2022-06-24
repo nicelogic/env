@@ -9,3 +9,5 @@ print('is first node: ' + str(isFirstNode))
      
 if isFirstNode:
     os.system('./init-master.sh')
+    os.system('./init-pod-network.sh')
+
