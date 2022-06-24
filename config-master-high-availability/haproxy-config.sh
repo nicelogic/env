@@ -1,4 +1,3 @@
-
 #!/bin/sh
 
 apt install haproxy -y

@@ -1,4 +1,3 @@
-
 #!/bin/sh
 
 export APISERVER_DEST_PORT=8443
