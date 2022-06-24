@@ -24,10 +24,25 @@ echo "wifi name: $WIFI_NAME"
 #   reboot
 # fi
 
-if [ $WIFI_NAME != "" ]; then
+#if [ $WIFI_NAME != "" ]; then
+if  [ -z "$WIFI_NAME" ]; then
 
 tee $NETPLAN_CONFIG_FILE_PATH <<EOF
+network:
+  version: 2
+  ethernets:
+    $NETWORK_INTERFACE_CARD:
+      dhcp4: no
+      dhcp6: no
+      addresses: [$LOCAL_IP/24]
+      gateway4: $LOCAL_IP_GATEWAY
+      nameservers:
+              addresses: [114.114.114.114, 8.8.8.8]
+EOF
 
+else
+
+tee $NETPLAN_CONFIG_FILE_PATH <<EOF
 # This is the network config written by 'subiquity'
 network:
   version: 2
@@ -43,21 +58,6 @@ network:
       gateway4: $LOCAL_IP_GATEWAY
       nameservers:
         addresses: [114.114.114.114, 8.8.8.8]
-EOF
-
-else
-
-tee $NETPLAN_CONFIG_FILE_PATH <<EOF
-network:
-  version: 2
-  ethernets:
-    $NETWORK_INTERFACE_CARD:
-      dhcp4: no
-      dhcp6: no
-      addresses: [$LOCAL_IP/24]
-      gateway4: $LOCAL_IP_GATEWAY
-      nameservers:
-              addresses: [114.114.114.114, 8.8.8.8]
 EOF
 
 fi
