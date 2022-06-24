@@ -1,8 +1,8 @@
 
-import yaml
-from python_util import util
 import sys
 sys.path.append('..')
+import yaml
+from python_util import util
 
 configYml = open(r'../config.yml')
 config = yaml.safe_load(configYml)
