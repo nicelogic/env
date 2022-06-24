@@ -1,5 +1,4 @@
-
-#!/bin/sh
+#!/bin/bash
 
 apt install -y containerd
 

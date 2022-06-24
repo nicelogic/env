@@ -1,5 +1,4 @@
-
-#!/bin/sh
+#!/bin/bash
 
 export LOCAL_IP=$1
 export NETWORK_INTERFACE_CARD=$2

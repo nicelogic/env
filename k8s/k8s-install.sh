@@ -1,5 +1,4 @@
-
-#!/bin/sh
+#!/bin/bash
 
 #apt-cache madison kubectl | grep 1.24
 

@@ -1,5 +1,4 @@
-
-#!/bin/sh
+#!/bin/bash
 
 export LOCAL_IP=$1
 
