@@ -60,21 +60,3 @@ util.replaceText(apiServerDestPortSearchText,
 
 apiServerDestPort = config['master-high-availability']['keepalived']['check-apiserver']['apiserver-dest-port']
 print('keep alived priority: ' + str(keepAlivedPriority))
-
-# haproxy
-haproxyCfgFileName = 'config/haproxy.cfg'
-haproxyNodeSearchText = r'''	server node.*check'''
-haproxyNodeReplaceText = r''
-util.replaceText(haproxyNodeSearchText,
-                 haproxyNodeReplaceText, haproxyCfgFileName)
-
-haproxyNodes = config['master-high-availability']['haproxy']['nodes']
-with open(haproxyCfgFileName, 'r') as haproxCfgFile:
-    haproxyCfgData = haproxCfgFile.read()
-for node in reversed(haproxyNodes):
-    if node not in haproxyCfgData:
-        print('haproxy config: ' + node)
-        haproxyNodeSearchText = r'''^(	#server node-x xxx.xxx.x.xxx:xxxx check)'''
-        haproxyNodeReplaceText = r'\g<1>' + '\n	server ' + node + ' check'
-        util.replaceText(haproxyNodeSearchText,
-                         haproxyNodeReplaceText, haproxyCfgFileName)

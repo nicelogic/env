@@ -15,7 +15,7 @@ master-high-availability:
   enable: false
   keepalived:
     #101 means: MASTER, < 101 means: BACKUP
-    priority: 101
+    priority: 100
     virtual-ipaddress: 192.168.1.200
     check-apiserver:
       apiserver-vip: 192.168.1.200
