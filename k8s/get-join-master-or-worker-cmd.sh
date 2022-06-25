@@ -1,5 +1,9 @@
 #!/bin/bash
 
+VIP=$1
+echo "vip: $VIP"
+ssh root@$VIP <<EOF
+
 joinCmd=`kubeadm token create --print-join-command`
 printf "join as worker' cmd:\n"
 printf "\n"
@@ -12,3 +16,5 @@ token=${token#*:}
 joinCmd=$joinCmd' --control-plane  --certificate-key '$token
 echo $joinCmd
 printf "\n"
+
+EOF

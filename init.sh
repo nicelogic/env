@@ -59,7 +59,19 @@ cd ..
 
 #-------------------
 cd k8s
+
+cd first-master
 python3 init-master-and-pod-network.py
+cd ..
+
+cd other-master
+python3 join-master-and-update-all-haproxy.py
+cd ..
+
+cd worker
+python3 join-worker.py
+cd ..
+
 cd ..
 
 #-------------------

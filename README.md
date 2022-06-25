@@ -14,18 +14,36 @@
 
 ## 如何使用
 
-### 手动操作部分
+### 手动操作部分(所有node通用)
 
 * sudo passwd root
 * git clone https://github.com/nicelogic/env.git
 
 ### 自动部分
 
+#### first master node
+
+* 配置config.yml
+* init.sh 
+	* if first node,执行k8s init
+	* if first node, init pod network
+
+#### other master node
+
+* 配置config.yml
+* init.sh
+	* if other master node, ssh to master node, get join master node cmd then k8s join
+	* update other master node's haproxy
+
+#### worker node
+
+* 配置config.yml
+* init.sh
+	* if worker node, ssh to master node, get join worker node cmd then k8s join
+
 * 配置config.yml
 * init.sh #基础环境配置(如果为Master则包括高可用部分)
 * init-or-join.sh #加入k8s
-* 如果加入的为master,更新其他mastert的ha配置
-
 
 ## 设计决策
 ### 网卡名称
@@ -41,11 +59,3 @@
 因为配置的同时有服务器挂了，就可能负载到本机器，此时本机虽然没有join master
 但是ha因为check失败，也会转发到其他可用的master node上。所以没问题
 
-### 为什么不使用一个init就完成全部操作
-
-因为join操作需要在已有master node上获取token
-这一步比较涉及安全。而且join操作目前经常失败
-其为核心步骤。单独执行比较便于观察。
-其粒度和职责也和init不大一样。
-update ha配置，master机器不会很多，所以可以手动执行。脚本执行需要其他node的密钥
-就此设定。费点人工，但是比较安全。

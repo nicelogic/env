@@ -10,17 +10,19 @@ local-ip-gateway: 192.168.1.1
 is-first-node: false
 apiserver-advertise-address: 0.0.0.0
 pod-network-cidr: 10.244.0.0/16
+vip: &vip 192.168.1.200
 control-plane-endpoint: 192.168.1.200:8443
 master-high-availability:
-  enable: false
+  enable: true
   keepalived:
     #101 means: MASTER, < 101 means: BACKUP
     priority: 100
-    virtual-ipaddress: 192.168.1.200
+    virtual-ipaddress: *vip
     check-apiserver:
-      apiserver-vip: 192.168.1.200
+      apiserver-vip: *vip
       apiserver-dest-port: 8443
   haproxy:
     nodes: 
       - node-0 192.168.1.100:6443
-      # - node-1 192.168.1.101:6443
+      - node-1 192.168.1.101:6443
+      - node-1 192.168.1.102:6443
