@@ -6,5 +6,7 @@ echo "vip: $VIP"
 echo "is master: $IS_MASTER"
 
 joinCmd=$(ssh -T root@$VIP "bash -s" < ../join-master-or-worker.sh $IS_MASTER)
-printf "joinCmd: \n"
-echo joinCmd
+printf "join cmd: \n"
+echo $joinCmd
+
+`$joinCmd`
