@@ -3,6 +3,7 @@
 
 ## TODO
 
+* 支持分块日志，新建Log目录，按阶段打印日志
 * 1.47 node,执行./init join master, 能自动更新其他node的haproxy配置
   * k8s remove node,能自动更新其他master node的haproxy
   *  测试三个master node,随便关掉哪台，都不影响操作
