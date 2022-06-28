@@ -276,3 +276,12 @@ Jun 24 14:29:02 node-0 Keepalived_vrrp[50555]: (VI_1) Entering MASTER STATE
 MASTER->BACKUP
 Jun 24 15:00:16 node-1 Keepalived_vrrp[855]: (VI_1) Master received advert from 192.168.1.100 with higher priority 99, ours 98 
 Jun 24 15:00:16 node-1 Keepalived_vrrp[855]: (VI_1) Entering BACKUP STATE
+
+## etcd
+
+第一个node:
+root       16802  5.9  0.1 11216568 45036 ?      Ssl  01:50   0:02 etcd --advertise-client-urls=https://192.168.1.100:2379 --cert-file=/etc/kubernetes/pki/etcd/server.crt --client-cert-auth=true --data-dir=/var/lib/etcd --experimental-initial-corrupt-check=true --initial-advertise-peer-urls=https://192.168.1.100:2380 --initial-cluster=node-0=https://192.168.1.100:2380 --key-file=/etc/kubernetes/pki/etcd/server.key --listen-client-urls=https://127.0.0.1:2379,https://192.168.1.100:2379 --listen-metrics-urls=http://127.0.0.1:2381 --listen-peer-urls=https://192.168.1.100:2380 --name=node-0 --peer-cert-file=/etc/kubernetes/pki/etcd/peer.crt --peer-client-cert-auth=true --peer-key-file=/etc/kubernetes/pki/etcd/peer.key --peer-trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt --snapshot-count=10000 --trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt
+
+
+加入Node之后：
+node1:
