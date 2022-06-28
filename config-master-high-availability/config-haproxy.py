@@ -3,6 +3,7 @@ import sys
 sys.path.append('..')
 import yaml
 from python_util import util
+import os
 
 configYml = open(r'../config.yml')
 config = yaml.safe_load(configYml)
@@ -33,3 +34,5 @@ for node in reversed(haproxyNodes):
         haproxyNodeReplaceText = r'\g<1>' + '\n	server ' + haproxyNodeItem + ' check'
         util.replaceText(haproxyNodeSearchText,
                          haproxyNodeReplaceText, haproxyCfgFileName)
+
+os.system('./haproxy-config.sh')

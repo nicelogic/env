@@ -3,6 +3,7 @@ import sys
 sys.path.append('..')
 import yaml
 from python_util import util
+import os
 
 configYml = open(r'../config.yml')
 config = yaml.safe_load(configYml)
@@ -60,3 +61,5 @@ util.replaceText(apiServerDestPortSearchText,
 
 apiServerDestPort = config['master-high-availability']['keepalived']['check-apiserver']['apiserver-dest-port']
 print('keep alived priority: ' + str(keepAlivedPriority))
+
+os.system('./keepalived-config.sh')
