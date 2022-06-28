@@ -46,4 +46,4 @@ with open('../config.yml', 'r+') as configYml:
         os.system('systemctl stop haproxy')
         os.system('apt remove haproxy')
 
-    os.system('./delete-node.sh ' + nodeName)
+    os.system('./delete-node.sh ' + localNodeName)
