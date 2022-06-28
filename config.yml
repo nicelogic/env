@@ -11,6 +11,7 @@ local-ip-gateway: 192.168.1.1
 apiserver-advertise-address: 0.0.0.0
 pod-network-cidr: 10.244.0.0/16
 control-plane-endpoint: 192.168.1.200:8443
+alived-master-node-ip: 192.168.1.100
 master-high-availability:
   enable: false
   keepalived:
