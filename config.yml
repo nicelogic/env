@@ -1,34 +1,29 @@
-
-node-name: 
-local-ip: 
-netplan-config-file-path: /etc/netplan/00-installer-config.yaml #00-installer-config-wifi.yaml 
-network-interface-card: 
+node-name: null
+local-ip: null
+netplan-config-file-path: /etc/netplan/00-installer-config.yaml
+network-interface-card: null
 wifi:
-  name: 
-  pwd:
+  name: null
+  pwd: null
 local-ip-gateway: 192.168.1.1
 is-first-node: false
 apiserver-advertise-address: 0.0.0.0
 pod-network-cidr: 10.244.0.0/16
-vip: &vip 192.168.1.200
+vip: 192.168.1.200
 control-plane-endpoint: 192.168.1.200:8443
 master-high-availability:
   enable: false
   keepalived:
-    #101 means: MASTER, < 101 means: BACKUP
     priority: 100
-    virtual-ipaddress: *vip
+    virtual-ipaddress: 192.168.1.200
     check-apiserver:
-      apiserver-vip: *vip
+      apiserver-vip: 192.168.1.200
       apiserver-dest-port: 8443
   haproxy:
-    nodes: 
-      - name: node-0
-        ip: 192.168.1.100
-        port: 6443
-      - name: node-1
-        ip: 192.168.1.101
-        port: 6443
-      - name: node-2
-        ip: 192.168.1.102
-        port: 6443
+    nodes:
+    - name: node-0
+      ip: 192.168.1.100
+      port: 6443
+    - name: node-2
+      ip: 192.168.1.102
+      port: 6443
