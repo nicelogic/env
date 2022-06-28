@@ -12,9 +12,9 @@ print('master high availability enable: ' +
 
 if not isFirstNode and isMasterHighAvailabilityEnable:
     print('not first node and join master node')
-    vip = config['vip']
+    alivedMasterNodeIp = config['alived-master-node-ip']
     os.system('../in-vip-node-ssh-join-master-or-worker.sh ' +
-              vip + ' ' + str(isMasterHighAvailabilityEnable))
+              alivedMasterNodeIp + ' ' + str(isMasterHighAvailabilityEnable))
 
     haproxyNodes = config['master-high-availability']['haproxy']['nodes']
     localIp = config['local-ip']
