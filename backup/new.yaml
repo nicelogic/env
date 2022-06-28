@@ -1,0 +1,15 @@
+!!python/object/apply:builtins.filter
+- !!python/name:__main__.%3Clambda%3E ''
+- !!python/object/apply:builtins.iter
+  - - node-name
+    - local-ip
+    - netplan-config-file-path
+    - network-interface-card
+    - wifi
+    - local-ip-gateway
+    - is-first-node
+    - apiserver-advertise-address
+    - pod-network-cidr
+    - vip
+    - control-plane-endpoint
+    - master-high-availability
