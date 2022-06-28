@@ -5,11 +5,11 @@ network-interface-card: null
 wifi:
   name: null
   pwd: null
-local-ip-gateway: 192.168.1.1
 is-first-node: false
+vip: 192.168.1.200
+local-ip-gateway: 192.168.1.1
 apiserver-advertise-address: 0.0.0.0
 pod-network-cidr: 10.244.0.0/16
-vip: 192.168.1.200
 control-plane-endpoint: 192.168.1.200:8443
 master-high-availability:
   enable: false
