@@ -25,9 +25,10 @@ with open('../config.yml', 'r+') as configYml:
         yaml.dump(config, configYml, sort_keys=False)
         configYml.truncate()
 
-        os.system('python3 ../config-master-high-availability/prepare-haproxy-config-file.py')
-        os.system('cp -f ../config-master-high-availability/config/haproxy.cfg /etc/haproxy/haproxy.cfg')
-        os.system('cd ..')
+        os.chdir('../config-master-high-availability')
+        os.system('python3 prepare-haproxy-config-file.py')
+        os.system('cp -f ./config/haproxy.cfg /etc/haproxy/haproxy.cfg')
+        os.chdir('../delete-node')
 
         print('update other master node haproxy cfg')
         haproxyNodes = config['master-high-availability']['haproxy']['nodes']
