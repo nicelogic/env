@@ -1,4 +1,4 @@
 #!/bin/bash
 
-kubectl apply -f https://github.com/coreos/flannel/raw/master/Documentation/kube-flannel.yml
+kubectl apply -f ./kube-flannel.yml
 
