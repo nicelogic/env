@@ -3,8 +3,7 @@
 [toc]
 
 ## 需求
-  * 构建高可用k8s架构
-  * 其他k8s集群紧耦合层面事物
+  * 构建和维护高可用k8s集群
 	* 调试dns
 	* dashboard
 	* prometheus //后续支持
