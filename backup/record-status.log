@@ -1,0 +1,20 @@
+
+default                dnsutils                                    1/1     Running   0               16s     10.244.0.4      node-0   <none>           <none>
+kube-system            coredns-74586cf9b6-p5lsg                    1/1     Running   0               5h48m   10.244.0.2      node-0   <none>           <none>
+kube-system            coredns-74586cf9b6-plbpq                    1/1     Running   0               5h48m   10.244.0.3      node-0   <none>           <none>
+kube-system            etcd-node-0                                 1/1     Running   14              5h48m   192.168.1.100   node-0   <none>           <none>
+kube-system            etcd-node-1                                 1/1     Running   0               5h28m   192.168.1.101   node-1   <none>           <none>
+kube-system            kube-apiserver-node-0                       1/1     Running   18              5h48m   192.168.1.100   node-0   <none>           <none>
+kube-system            kube-apiserver-node-1                       1/1     Running   1 (5h28m ago)   5h28m   192.168.1.101   node-1   <none>           <none>
+kube-system            kube-controller-manager-node-0              1/1     Running   4               5h48m   192.168.1.100   node-0   <none>           <none>
+kube-system            kube-controller-manager-node-1              1/1     Running   0               5h28m   192.168.1.101   node-1   <none>           <none>
+kube-system            kube-flannel-ds-29tqc                       1/1     Running   0               5h48m   192.168.1.100   node-0   <none>           <none>
+kube-system            kube-flannel-ds-6kz6s                       1/1     Running   0               5h28m   192.168.1.101   node-1   <none>           <none>
+kube-system            kube-flannel-ds-hzqw6                       1/1     Running   2 (7m56s ago)   5h24m   192.168.1.102   node-2   <none>           <none>
+kube-system            kube-proxy-l95sv                            1/1     Running   1 (8m50s ago)   5h24m   192.168.1.102   node-2   <none>           <none>
+kube-system            kube-proxy-s5ngs                            1/1     Running   0               5h48m   192.168.1.100   node-0   <none>           <none>
+kube-system            kube-proxy-scvkr                            1/1     Running   0               5h28m   192.168.1.101   node-1   <none>           <none>
+kube-system            kube-scheduler-node-0                       1/1     Running   4               5h48m   192.168.1.100   node-0   <none>           <none>
+kube-system            kube-scheduler-node-1                       1/1     Running   0               5h28m   192.168.1.101   node-1   <none>           <none>
+kubernetes-dashboard   dashboard-metrics-scraper-9d5cc7f8f-k4cpq   1/1     Running   0               8m55s   10.244.2.7      node-2   <none>           <none>
+kubernetes-dashboard   kubernetes-dashboard-76668ff785-rqjkx       1/1     Running   0               8m55s   10.244.2.6      node-2   <none>           <none>
