@@ -22,26 +22,25 @@
 
 * sudo passwd root
 * git clone https://github.com/nicelogic/env.git
+* 配置config.yml
+* ./ip-and-ssh.sh
 
 ### 自动部分
 
 #### first master node
 
-* 配置config.yml
 * init.sh 
 	* if first node,执行k8s init
 	* if first node, init pod network
 
 #### other master node
 
-* 配置config.yml
 * init.sh
 	* if other master node, ssh to master node, get join master node cmd then k8s join
 	* update other master node's haproxy
 
 #### worker node
 
-* 配置config.yml
 * init.sh
 	* if worker node, ssh to master node, get join worker node cmd then k8s join
 
