@@ -12,5 +12,9 @@ echo $joinCmd
 `$joinCmd`
 
 mkdir -p $HOME/.kube
-sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+if [ "$IS_MASTER" == "False" ];then
+    sudo scp root@$alivedMasterNodeIp:/etc/kubernetes/admin.conf $HOME/.kube/config
+else
+    sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+fi
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
