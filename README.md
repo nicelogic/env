@@ -17,35 +17,20 @@
 //三大基础部分 + 业务部分
 ## 如何使用
 
-### 手动操作部分(所有node通用)
-
 * sudo passwd root
 * git clone https://github.com/nicelogic/env.git
 * 配置config.yml
 * ./ip-and-ssh.sh
+* ./init.sh
+ * first master node 
+   * if first node,执行k8s init 
+   * if first node, init pod network
+ * other master node
+   * if other master node, ssh to master node, get join master node cmd then k8s join
+   * update other master node's haproxy
+ * worker node
+   * if worker node, ssh to master node, get join worker node cmd then k8s join
 
-### 自动部分
-
-#### first master node
-
-* init.sh 
-	* if first node,执行k8s init
-	* if first node, init pod network
-
-#### other master node
-
-* init.sh
-	* if other master node, ssh to master node, get join master node cmd then k8s join
-	* update other master node's haproxy
-
-#### worker node
-
-* init.sh
-	* if worker node, ssh to master node, get join worker node cmd then k8s join
-
-* 配置config.yml
-* init.sh #基础环境配置(如果为Master则包括高可用部分)
-* init-or-join.sh #加入k8s
 
 ## 设计决策
 ### 网卡名称
