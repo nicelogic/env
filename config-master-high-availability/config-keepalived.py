@@ -30,6 +30,11 @@ print('keep alived vip: ' + keepAlivedVip)
 print('keep alived api server vip: ' + apiServerVip)
 print('keep alived api server dest port: ' + str(apiServerDestPort))
 
+keepAlivedNetworkInterfaceCardSearchText = r"^(.*interface).*$"
+keepAlivedNetworkInterfaceCardReplaceText = r"\1 " + networkInterfaceCard
+util.replaceText(keepAlivedNetworkInterfaceCardSearchText,
+                 keepAlivedNetworkInterfaceCardReplaceText, keepAlivedCfgFileName)
+
 keepAlivedPrioritySearchText = r"^(.*priority).*$"
 keepAlivedPriorityReplaceText = r"\1 " + str(keepAlivedPriority)
 util.replaceText(keepAlivedPrioritySearchText,

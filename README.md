@@ -4,16 +4,17 @@
 
 ## 需求
   * 构建高可用k8s架构
-  * 其他k8s集群层面事物，都归本项目负责
+  * 其他k8s集群紧耦合层面事物
+	* 调试dns
 	* dashboard
-	* reloader
-	* efk //后续支持
 	* prometheus //后续支持
   * 支持uninit.sh剥离 node
   * 只需要内网即可
 
 //traefik不是，属于带宽流量部分
 //k8s架构 + taefik流量 + 数据库 + 微服务
+//reloader，和业务层面比较关联
+//efk 和业务比较关联
 //三大基础部分 + 业务部分
 ## 如何使用
 
