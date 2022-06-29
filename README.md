@@ -7,11 +7,14 @@
   * 其他k8s集群层面事物，都归本项目负责
 	* dashboard
 	* reloader
-	* traefik
 	* efk //后续支持
 	* prometheus //后续支持
   * 支持uninit.sh剥离 node
+  * 只需要内网即可
 
+//traefik不是，属于带宽流量部分
+//k8s架构 + taefik流量 + 数据库 + 微服务
+//三大基础部分 + 业务部分
 ## 如何使用
 
 ### 手动操作部分(所有node通用)

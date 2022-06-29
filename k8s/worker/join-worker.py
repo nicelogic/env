@@ -12,7 +12,7 @@ print('master high availability enable: ' +
 
 if not isFirstNode and not isMasterHighAvailabilityEnable:
     print('not first node and join worker node')
-    vip = config['vip']
-    os.system('../in-vip-node-ssh-join-master-or-worker.sh ' + vip + ' ' + str(isMasterHighAvailabilityEnable))
+    alivedMasterNodeIp = config['alived-master-node-ip']
+    os.system('../in-vip-node-ssh-join-master-or-worker.sh ' + alivedMasterNodeIp + ' ' + str(isMasterHighAvailabilityEnable))
 
 
