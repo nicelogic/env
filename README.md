@@ -5,11 +5,11 @@
 ## 需求
   * 构建和维护高可用k8s集群
 	* 调试dns
-	* dashboard
 	* prometheus //后续支持
   * 支持uninit.sh剥离 node
   * 只需要内网即可
 
+// dashboard给业务吧
 //traefik属于带宽流量部分，dashboard需要,后续traefik ok, dashboard ingress需要补上
 //k8s架构 + taefik流量 + 数据库 + 微服务
 //reloader，和业务层面比较关联

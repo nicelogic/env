@@ -11,5 +11,4 @@ if isFirstNode:
     os.system('./init-master.sh')
     os.system('./init-pod-network.sh')
     os.system('./support-debug-util.sh')
-    os.system('./support-dashboard.sh')
 

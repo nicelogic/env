@@ -1,3 +1,3 @@
 #!/bin/bash
 
-kubectl apply -k ../service/util/k8s
+kubectl apply -k ../maintain/util/k8s
