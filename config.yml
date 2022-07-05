@@ -28,3 +28,7 @@ master-high-availability:
     - name: node-1
       ip: 192.168.1.101
       port: 6443
+labels:
+#- ingress=true
+#- mongodb=true
+#- minio=true
