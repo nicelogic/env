@@ -46,23 +46,8 @@
 因为配置的同时有服务器挂了，就可能负载到本机器，此时本机虽然没有join master
 但是ha因为check失败，也会转发到其他可用的master node上。所以没问题
 
+### traefik集群层面而不是app层面
 
-
-## etcd不断重启导致的apiserver不断重启
-
-crictl ps -a 查看etcd,并通过crictl logs etcd-container-id, 发现选举leader出问题
-ps aux | grep etcd, 发现
-
-root        4185  5.9  0.2 11215288 39764 ?      Ssl  00:55   0:04 etcd --advertise-client-urls=https://192.168.1.101:2379 --cert-file=/etc/kubernetes/pki/etcd/server.crt --client-cert-auth=true --data-dir=/var/lib/etcd --experimental-initial-corrupt-check=true --initial-advertise-peer-urls=https://192.168.1.101:2380 --initial-cluster=node-1=https://192.168.1.101:2380,node-0=https://192.168.1.100:2380 --initial-cluster-state=existing --key-file=/etc/kubernetes/pki/etcd/server.key --listen-client-urls=https://127.0.0.1:2379,https://192.168.1.101:2379 --listen-metrics-urls=http://127.0.0.1:2381 --listen-peer-urls=https://192.168.1.101:2380 --name=node-1 --peer-cert-file=/etc/kubernetes/pki/etcd/peer.crt --peer-client-cert-auth=true --peer-key-file=/etc/kubernetes/pki/etcd/peer.key --peer-trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt --snapshot-count=10000 --trusted-ca-file=/etc/kubernetes/pki/etcd/ca.crt
-
-
-initial-cluster有问题， node-0还存在
-export ETCD_INITIAL_CLUSTER="node-1=https://192.168.1.101:2380"
-export ETCD_INITIAL_CLUSTER_STATE="new"
-
-/var/lib/kubelet
-
-## 笔记本关闭屏幕
-
-setterm --blank force
+* 每个app一个traefik, 则高可用得做多套，端口得各定不同，很麻烦
+* 整个集群的出入口点，多个app共享，和k8s能力各个app共享一样。简单易于管理
 
