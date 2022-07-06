@@ -20,6 +20,7 @@ if not isFirstNode and isMasterHighAvailabilityEnable:
     localIp = config['local-ip']
     for node in reversed(haproxyNodes):
         nodeIp = node['ip']
+        print('upate other control panel node haproxy cfg, nodeIp: ' + nodeIp)
         if nodeIp != localIp:
             os.system('scp /etc/haproxy/haproxy.cfg root@' + nodeIp + ':/etc/haproxy/haproxy.cfg')
             os.system('ssh -T root@' + nodeIp + ' systemctl restart haproxy')
