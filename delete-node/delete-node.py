@@ -27,8 +27,8 @@ with open('../config.yml', 'r+') as configYml:
             configYml.truncate()
 
             os.chdir('../config-master-high-availability')
-            os.system('python3 prepare-haproxy-config-file.py')
-            os.system('cp -f ./config/haproxy.cfg /etc/haproxy/haproxy.cfg')
+            os.system('python3 config-haproxy.py')
+            #os.system('cp -f ./config/haproxy.cfg /etc/haproxy/haproxy.cfg')
             os.chdir('../delete-node')
 
             print('update other master node haproxy cfg')
