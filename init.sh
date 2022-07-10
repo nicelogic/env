@@ -1,5 +1,10 @@
 #!/bin/bash
 
+#-------------------
+cd uninstall-useless-component
+./uninstall-useless-component.sh
+cd ..
+
 #---------------------
 cd config-node-name
 python3 ./config.py | tee ../log/config-node-name
