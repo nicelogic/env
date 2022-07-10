@@ -1,3 +1,4 @@
+env-id: env-0
 node-name: null
 local-ip: null
 netplan-config-file-path: /etc/netplan/00-installer-config.yaml
@@ -28,7 +29,11 @@ master-high-availability:
     - name: node-2
       ip: 192.168.1.102
       port: 6443
-labels:
-#- ingress=true
-#- mongodb=true
-#- minio=true
+ingress-provider:
+  enable: false
+  keepalived:
+    priority: 100
+    virtual-ipaddress: 192.168.1.300
+    check-ingress-provider:
+      apiserver-vip: 192.168.1.300
+      apiserver-dest-port: 80
